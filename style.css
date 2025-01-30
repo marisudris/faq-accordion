@@ -1,0 +1,190 @@
+@font-face {
+  font-family: "Work Sans";
+  src: url("assets/fonts/WorkSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+:root {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  --clr-white: hsl(0, 100%, 100%);
+  --clr-purple-100: hsl(275, 100%, 97%);
+  --clr-purple-600: hsl(292, 16%, 49%);
+  --clr-purple-950: hsl(292, 42%, 14%);
+
+  --clr-purple-shadow: hsla(293, 33%, 69%, 0.604);
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/***********
+***Resets***
+************/
+body {
+  margin: 0;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 0;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+a {
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+/***************
+***Typography***
+****************/
+body {
+  font-family: "Work Sans", sans-serif;
+}
+
+.card-title,
+.accordion-button {
+  color: var(--clr-purple-950);
+}
+
+.card-title {
+  font-size: 2rem;
+}
+
+.accordion-button {
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.accordion-content {
+  font-size: 0.875rem;
+  color: var(--clr-purple-600);
+}
+
+/***********
+***Layout***
+************/
+body {
+  background: url("./assets/images/background-pattern-mobile.svg") repeat-x,
+    var(--clr-purple-100);
+}
+
+.main {
+  min-height: 100vh;
+  padding-top: 142px;
+}
+
+@media (min-width: 580px) {
+  .main {
+    padding-top: 167px;
+  }
+}
+
+.card {
+  display: flow-root;
+  width: min(87.2%, 600px);
+  padding: 1.5em 1.5em 0.2em;
+  margin: 0 auto;
+  background-color: var(--clr-white);
+  border-radius: 8px;
+  box-shadow: 0 20px 100px -20px var(--clr-purple-shadow);
+}
+
+.card-title {
+  margin-bottom: 0.125em;
+}
+
+.card-title::before {
+  content: "";
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("./assets/images/icon-star.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 0.75em;
+}
+
+.accordion-header {
+  padding-block: 20px;
+}
+
+.accordion-header:not(:first-of-type) {
+  border-top: 1px solid var(--clr-purple-100);
+}
+
+.accordion-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.accordion-button::after {
+  content: "";
+  display: inline-block;
+  flex-shrink: 0;
+  width: 31px;
+  height: 31px;
+  margin-left: 2.25em;
+  background-image: url("./assets/images/icon-plus.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.accordion-button[aria-expanded="true"]::after {
+  background-image: url("./assets/images/icon-minus.svg");
+}
+
+.accordion-content {
+  margin-block: 0.2em 1.5em;
+}
+
+/***********
+***Utilities***
+*************/
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  opacity: 0;
+}
