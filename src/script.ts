@@ -13,8 +13,8 @@ class Accordion {
 
         this.isOpen = this.buttonElem.getAttribute('aria-expanded') === 'true';
         this._setHeight(this.isOpen);
+        this._setFocusable(this.isOpen);
 
-        // add event listeners
         this.buttonElem.addEventListener('click', this.onButtonClick.bind(this));
   }
 
@@ -23,25 +23,35 @@ class Accordion {
   }
 
   toggle(open: boolean) {
-    // don't do anything if the open state doesn't change
     if (open === this.isOpen) {
       return;
     }
 
-    // update the internal state
     this.isOpen = open;
 
-    // handle DOM updates
     this.buttonElem.setAttribute('aria-expanded', `${open}`);
-    this.contentElem.setAttribute('aria-hidden', String(!open));
+    this.contentElem.setAttribute('aria-hidden', `${!open}`);
     this._setHeight(open);
+    this._setFocusable(open);
   }
   
   _setHeight(open: boolean) {
     this.contentElem.style.maxHeight = open ? this.contentElem.scrollHeight + 'px' : '0';
   }
+  
+  _setFocusable(open: boolean) {
+    const focusableElements = this.contentElem.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    focusableElements.forEach(el => {
+      if (!open) {
+        el.setAttribute('tabindex', '-1');
+        console.log('close');
+      } else {
+        el.setAttribute('tabindex', '0');
+        console.log('open');
+      }
+    });
+  }
 
-  // Add public open and close methods for convenience
   open() {
     this.toggle(true);
   }
@@ -51,7 +61,6 @@ class Accordion {
   }
 }
 
-// init accordions
 const accordions = document.querySelectorAll('.accordion-header');
 accordions.forEach((accordionEl) => {
   new Accordion(accordionEl as HTMLElement);
