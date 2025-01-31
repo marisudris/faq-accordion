@@ -50,7 +50,7 @@ If transitions are necessary (they aren't in this challenge, but I still wanted 
 
 ### Continued development
 
-Learn if there are less JavaScripy heavy but accessible solutions for accordion components that have transitions on opening/closing.
+Learn if there are less JavaScript heavy but accessible solutions for accordion components that have transitions on opening/closing.
 
 ### Useful resources
 - [**ARIA Accordion Pattern**](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) for accessible accordion markup and rules.
