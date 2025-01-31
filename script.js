@@ -1,3 +1,4 @@
+"use strict";
 class Accordion {
     rootElem;
     buttonElem;
@@ -6,7 +7,7 @@ class Accordion {
     constructor(domNode) {
         this.rootElem = domNode;
         this.buttonElem = this.rootElem.querySelector('button[aria-expanded]');
-        const controlsId = this.buttonElem.getAttribute('aria-controls') ?? '';
+        const controlsId = this.buttonElem.getAttribute('aria-controls');
         this.contentElem = document.getElementById(controlsId);
         this.isOpen = this.buttonElem.getAttribute('aria-expanded') === 'true';
         // add event listeners
@@ -44,5 +45,3 @@ const accordions = document.querySelectorAll('.accordion-header');
 accordions.forEach((accordionEl) => {
     new Accordion(accordionEl);
 });
-export {};
-//# sourceMappingURL=script.js.map
