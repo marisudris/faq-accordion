@@ -18,7 +18,7 @@
   --clr-purple-600: hsl(292, 16%, 49%);
   --clr-purple-950: hsl(292, 42%, 14%);
 
-  --clr-purple-shadow: hsla(293, 33%, 69%, 0.604);
+  --clr-purple-shadow: hsla(293, 33%, 69%, 0.5);
 
   --font-weight-regular: 400;
   --font-weight-semibold: 600;
@@ -45,21 +45,6 @@ p {
   margin: 0;
 }
 
-img {
-  display: block;
-  min-width: 0;
-  max-width: 100%;
-  min-height: 0;
-  max-height: 100%;
-  object-fit: cover;
-}
-
-a {
-  font: inherit;
-  color: inherit;
-  text-decoration: none;
-}
-
 button {
   font: inherit;
   color: inherit;
@@ -83,16 +68,16 @@ body {
 }
 
 .card-title {
-  font-size: 2rem;
+  font-size: clamp(2rem, 0.929rem + 2.857vw, 3.5rem);
 }
 
 .accordion-button {
-  font-size: 1rem;
+  font-size: clamp(1rem, 0.911rem + 0.238vw, 1.125rem);
   font-weight: var(--font-weight-semibold);
 }
 
 .accordion-content {
-  font-size: 0.875rem;
+  font-size: clamp(0.875rem, 0.786rem + 0.238vw, 1rem);
   color: var(--clr-purple-600);
 }
 
@@ -102,6 +87,13 @@ body {
 body {
   background: url("./assets/images/background-pattern-mobile.svg") repeat-x,
     var(--clr-purple-100);
+}
+
+@media (min-width: 580px) {
+  body {
+    background: url("./assets/images/background-pattern-desktop.svg") repeat-x,
+      var(--clr-purple-100);
+  }
 }
 
 .main {
@@ -122,26 +114,46 @@ body {
   margin: 0 auto;
   background-color: var(--clr-white);
   border-radius: 8px;
-  box-shadow: 0 20px 100px -20px var(--clr-purple-shadow);
+  position: relative;
+}
+
+@media (min-width: 580px) {
+  .card {
+    padding: 2.5em 2.5em 0.95em;
+    border-radius: 16px;
+  }
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 60%;
+  top: 30%;
+  left: 5%;
+  background: transparent;
+  box-shadow: 0 60px 100px 10px var(--clr-purple-shadow);
+  z-index: -1;
 }
 
 .card-title {
-  margin-bottom: 0.125em;
+  margin-bottom: 0.15em;
 }
 
 .card-title::before {
   content: "";
   display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 0.75em;
+  height: 0.75em;
   background-image: url("./assets/images/icon-star.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  margin-right: 0.75em;
+  background-position-y: 1px;
+  margin-right: clamp(1.4rem, 1.571rem + -0.19vw, 1.5rem);
 }
 
 .accordion-header {
-  padding-block: 20px;
+  padding-block: clamp(1.068em, 0.928em + 0.74vw, 1.26em);
 }
 
 .accordion-header:not(:first-of-type) {
@@ -161,10 +173,11 @@ body {
   flex-shrink: 0;
   width: 31px;
   height: 31px;
-  margin-left: 2.25em;
+  margin-left: 1em;
   background-image: url("./assets/images/icon-plus.svg");
   background-size: contain;
   background-repeat: no-repeat;
+  transform: translateX(1px);
 }
 
 .accordion-button[aria-expanded="true"]::after {
@@ -172,7 +185,7 @@ body {
 }
 
 .accordion-content {
-  margin-block: 0.2em 1.5em;
+  margin-bottom: 1.5em;
 }
 
 /***********
