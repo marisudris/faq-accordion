@@ -192,6 +192,13 @@ body {
 
 .accordion-content {
   margin-bottom: 1.5em;
+  overflow: hidden;
+  transition: max-height 0.2s linear;
+}
+
+.accordion-content[aria-hidden="true"] {
+  max-height: 0;
+  margin-bottom: 0;
 }
 
 /***********

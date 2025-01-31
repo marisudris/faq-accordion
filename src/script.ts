@@ -12,6 +12,7 @@ class Accordion {
         this.contentElem = document.getElementById(controlsId) as HTMLElement;
 
         this.isOpen = this.buttonElem.getAttribute('aria-expanded') === 'true';
+        this._setHeight(this.isOpen);
 
         // add event listeners
         this.buttonElem.addEventListener('click', this.onButtonClick.bind(this));
@@ -32,11 +33,12 @@ class Accordion {
 
     // handle DOM updates
     this.buttonElem.setAttribute('aria-expanded', `${open}`);
-    if (open) {
-      this.contentElem.removeAttribute('hidden');
-    } else {
-      this.contentElem.setAttribute('hidden', '');
-    }
+    this.contentElem.setAttribute('aria-hidden', String(!open));
+    this._setHeight(open);
+  }
+  
+  _setHeight(open: boolean) {
+    this.contentElem.style.maxHeight = open ? this.contentElem.scrollHeight + 'px' : '0';
   }
 
   // Add public open and close methods for convenience
